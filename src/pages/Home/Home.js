@@ -5,7 +5,7 @@ import Image from '../../components/image/Image'
 
 const Home = () => {
   return (
-    <div>
+    <div className='home'>
       <Image />
       <Featured />
       

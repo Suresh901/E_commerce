@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { useParams } from 'react-router-dom';
-
+import './SCart.scss'
 const SCart = () => {
     const [item, setItem] = useState()
     const {id} = useParams();
@@ -24,7 +24,7 @@ const SCart = () => {
     }, [])
   
   return (
-    <div className='cart'>
+    <div className='scart'>
       <h1>Products in your cart</h1>
     
         <div className='cart-item' >

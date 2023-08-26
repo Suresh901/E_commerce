@@ -7,6 +7,7 @@ import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 const Product = () => {
 
   const [item, setItem] = useState()
+  const [quantity, setQuantity] = useState(1)
 
   const {id} = useParams();
   console.log(id)
@@ -34,14 +35,21 @@ const Product = () => {
       </div>
 
       <div className='product-right'>
-      <h5>Title:</h5>
-      <h3>{item?.title}</h3>
-      <h5>Description: </h5>
-      <h3>{item?.description}</h3>
-      <h5>Price: $ {item?.price}</h5>
-      <button>
-      <AddShoppingCartIcon/> Add To Cart
-      </button>
+              <h5>Title:</h5>
+              <h3>{item?.title}</h3>
+              <h5>Description: </h5>
+              <h3>{item?.description}</h3>
+              <h5>Price: $ {item?.price}</h5>
+
+              <div className='counter'> 
+              <button className='btn' onClick={(e)=>{setQuantity(num=>num === 1 ? 1 : num-1)}}> - </button>
+              <span> {quantity} </span>
+              <button className='btn' onClick={(e)=>{setQuantity(num=>num+1)}}> + </button>
+              </div>
+
+              <button className='add'>
+              <AddShoppingCartIcon/> Add To Cart
+              </button>
       </div>
 
       
