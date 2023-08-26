@@ -1,0 +1,25 @@
+.products{
+    
+    width: 300px;
+    padding: 20px;
+    margin: 20px;
+     
+
+    .products-top{
+        h1{
+            font-size: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 50px;
+        }
+    } 
+
+    .products-buttom{
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 100px;
+        
+        
+    }
+}
