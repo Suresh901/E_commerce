@@ -5,11 +5,13 @@ import SearchIcon from '@mui/icons-material/Search';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import SCart from '../ShoppingCart/SCart'
+import { useSelector } from 'react-redux';
 
 
 const Navbar = () => {
     const [cart, setCart] = useState(false)
-
+    const items= useSelector((state) => state)
+    console.log(items)
   return (
     <div className='navbar'>
         <div className='wrapper'>
@@ -37,7 +39,7 @@ const Navbar = () => {
                   <FavoriteBorderIcon/>
                     <div className='cart' onClick={()=>{setCart(!cart)}}>
                         <ShoppingCartIcon/> 
-                        <span>0</span>
+                        <span>{items.cart.length}</span>
                     </div> 
                 </div>
             </div>

@@ -3,13 +3,21 @@ import axios from 'axios'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { useParams } from 'react-router-dom';
 import './SCart.scss'
+import { useSelector } from 'react-redux'
+
+
 const SCart = () => {
     const [item, setItem] = useState()
     const {id} = useParams();
     console.log(id)
 
-    const showProduct = () =>{
-        const url=`https://fakestoreapi.com/products/${id}`
+    const items= useSelector((state) => state)
+    // console.log(items)
+
+    const total = items.cart.reduce((a,b) => a + b.price, 0)
+
+    const showProducts = () =>{
+        const url=`https://fakestoreapi.com/products`
         axios.get(url).then((res)=>{
           console.log(res.data)
           setItem(res.data)
@@ -20,7 +28,7 @@ const SCart = () => {
     }
   
     useEffect(()=>{
-      showProduct();
+      showProducts();
     }, [])
   
   return (
@@ -28,18 +36,23 @@ const SCart = () => {
       <h1>Products in your cart</h1>
     
         <div className='cart-item' >
-            <img src={item?.image} alt=""/>
-            <h1>{item?.title}</h1>
+            <img src={items.image} alt=""/>
+            <h1>{items.title}</h1>
             <div className='price'>
-              1 * {item?.price}
+              1 * {items.price}
             </div>
             <DeleteOutlineIcon className='delete'/>
         </div>
       
 
       <div className='total'>
+      <div className='cart-item' >
+            {/* <img src={items.cart.image} alt='' /> */}
+            
+            <DeleteOutlineIcon className='delete'/>
+        </div>
         <span>SubTotal</span>
-        <span>$123</span>
+        <span>${total}</span>
       </div>
 
       <button className='btn1'>Proceed to CheckOut</button>

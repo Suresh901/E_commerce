@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom'
 import axios from 'axios';
 import './Product.scss'
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import { useDispatch } from 'react-redux';
+import {addItem} from '../../Store/Slices/CartSlice'
 
 const Product = () => {
 
@@ -11,6 +13,8 @@ const Product = () => {
 
   const {id} = useParams();
   console.log(id)
+
+  const dispatch = useDispatch();
 
   const showProduct = () =>{
       const url=`https://fakestoreapi.com/products/${id}`
@@ -38,7 +42,7 @@ const Product = () => {
               <h5>Title:</h5>
               <h3>{item?.title}</h3>
               <h5>Description: </h5>
-              <h3>{item?.description}</h3>
+              <h3>{item?.description}</h3> 
               <h5>Price: $ {item?.price}</h5>
 
               <div className='counter'> 
@@ -47,13 +51,10 @@ const Product = () => {
               <button className='btn' onClick={(e)=>{setQuantity(num=>num+1)}}> + </button>
               </div>
 
-              <button className='add'>
+              <button className='add' onClick={(e) => dispatch(addItem({ image: item.image, title: item.title , price: item.price }))}>
               <AddShoppingCartIcon/> Add To Cart
               </button>
       </div>
-
-      
-      
     </div>
   )
 }
