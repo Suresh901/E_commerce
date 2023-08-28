@@ -2,15 +2,16 @@
     position: absolute;
     right: 0;
     top: 80px;
-    background-color: wheat;
+    background-color: lightgrey;
     padding: 50px;
     z-index: 999;
+    
     h1{
         font-size: 20px;
     }
     
     .cart-item{
-        
+        height: auto;
         display: flex;
         align-items: center;
         gap: 20px;
@@ -24,7 +25,11 @@
         h1{
             font-size: 14px;
         }
-
+        
+        .price{
+            display: flex;
+            flex-direction: column;
+        }
         .delete{
             color:red;
             font-size: 30px;

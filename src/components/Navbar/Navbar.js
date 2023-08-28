@@ -10,8 +10,8 @@ import { useSelector } from 'react-redux';
 
 const Navbar = () => {
     const [cart, setCart] = useState(false)
-    const items= useSelector((state) => state)
-    console.log(items)
+    
+     const products = useSelector( state => state.cart.products);
   return (
     <div className='navbar'>
         <div className='wrapper'>
@@ -39,7 +39,7 @@ const Navbar = () => {
                   <FavoriteBorderIcon/>
                     <div className='cart' onClick={()=>{setCart(!cart)}}>
                         <ShoppingCartIcon/> 
-                        <span>{items.cart.length}</span>
+                        <span>{products.length}</span>
                     </div> 
                 </div>
             </div>

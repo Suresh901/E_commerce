@@ -4,7 +4,7 @@ import axios from 'axios';
 import './Product.scss'
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import { useDispatch } from 'react-redux';
-import {addItem} from '../../Store/Slices/CartSlice'
+import { addToCart } from '../../Store/Slices/CartSlice'
 
 const Product = () => {
 
@@ -12,14 +12,14 @@ const Product = () => {
   const [quantity, setQuantity] = useState(1)
 
   const {id} = useParams();
-  console.log(id)
+  // console.log(id)
 
   const dispatch = useDispatch();
 
   const showProduct = () =>{
       const url=`https://fakestoreapi.com/products/${id}`
       axios.get(url).then((res)=>{
-        console.log(res.data)
+        // console.log(res.data)
         setItem(res.data)
       }).catch((err)=>{
         console.log(err)
@@ -29,7 +29,7 @@ const Product = () => {
 
   useEffect(()=>{
     showProduct();
-  }, [])
+  }, []);
 
   
   return (
@@ -51,7 +51,14 @@ const Product = () => {
               <button className='btn' onClick={(e)=>{setQuantity(num=>num+1)}}> + </button>
               </div>
 
-              <button className='add' onClick={(e) => dispatch(addItem({ image: item.image, title: item.title , price: item.price }))}>
+              <button className='add' onClick={(e)=>{dispatch(addToCart({
+                id: item?.id,
+                title: item?.title,
+                image: item?.image,
+                price: item?.price,
+                quantity
+              }))}}>
+              
               <AddShoppingCartIcon/> Add To Cart
               </button>
       </div>
